@@ -10,9 +10,13 @@ answer = list(answerlist[0])
 
 display = []
 
+used = []
+
 display.extend(answer)
 
-for i in range(len(display)+3):
+used.extend(display)
+
+for i in range(len(display)):
     display[i] = "_"
 
 print (" ".join(display))
@@ -27,12 +31,20 @@ while count < len(answer):
     print (count)
 
     for i in range(len(answer)):
-        if answer[i] == guess:
+        if answer[i] == guess and guess in used:
             display[i] = guess
             count += 1
+            used.remove(guess)
     
+    if guess not in display:
+        print ("sorry, wrong guess")
+
+    print ("you have guessed : ", count, "corrent letters")
+
     print (" ".join(display))
     print ()
+
+print ("well done, you geussed the word")
 
 
 
